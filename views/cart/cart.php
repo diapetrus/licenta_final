@@ -1,14 +1,12 @@
 <?php
 $total = 0;
-foreach($_SESSION['user']->cart as $item) {
-    $total += $item['pizza']->getPricep() * $item['quantity'];
+if(isset($_SESSION['user']->cart)) {
+    foreach($_SESSION['user']->cart as $item) {
+        $total += $item['pizza']->getPricep() * $item['quantity'];
+    }
 }
 ?>
-<?php
-if ($total == 0)
-    echo "Cosul dumneavoastra este gol!";
-?>
-
+<?php if(isset($_SESSION['user']->cart)) : ?>
 <table id="admin-book-table" class="table table-bordered table-striped">
     <tbody>
     <tr>
@@ -36,3 +34,6 @@ if ($total == 0)
     </tbody>
 </table>
 <a href="/history" class="total-price btn btn-primary">Finalizeaza comanda</a>
+<?php else:  ?>
+<div>Cosul dumneavoastra este gol</div>
+<?php endif; ?>

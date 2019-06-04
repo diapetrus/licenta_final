@@ -17,7 +17,7 @@ class HistoryModel extends BasicModel
     }
 
     public function saveToHistory(){
-        /*$query = $this->dsql_connection->dsql();
+        $query = $this->dsql_connection->dsql();
         $currentdata = date("Y-m-d");
         $total = 0;
         foreach($_SESSION['user']->cart as $item) {
@@ -28,12 +28,19 @@ class HistoryModel extends BasicModel
             ->set('idu', $idu)
             ->set('totalprice',$total)
             ->set('date', $currentdata)
-
             ->insert();
-
-        */
         $query = $this->dsql_connection->dsql();
-        $res = $query->table('history');
-        return $res;
+        $h = $query->table('history')->get();
+        $lastInsertedId = end($h)['idh'];
+
+        foreach($_SESSION['user']->cart as $item) {
+            $query = $this->dsql_connection->dsql();
+            $query->table('history_products')
+                ->set('idp', $item['pizza']->getIdp())
+                ->set('idh', $lastInsertedId)
+                ->insert();
         }
+
+        $_SESSION['user']->cart = [];
+    }
 }

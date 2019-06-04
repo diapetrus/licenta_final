@@ -45,8 +45,6 @@ class CartController extends BasicController
     {
         $historyModel = new HistoryModel();
         $history = $historyModel->saveToHistory();
-        print_r($history);
-        die;
         redirect('/');
     }
 

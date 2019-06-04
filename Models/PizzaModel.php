@@ -10,7 +10,9 @@ namespace Models;
 
 namespace Models;
 
+use atk4\core\Exception;
 use Entities\PizzaEntity;
+use atk4\dsql\Expression;
 
 class PizzaModel extends BasicModel
 {
@@ -109,4 +111,59 @@ class PizzaModel extends BasicModel
             ->delete();
     }
 
+    public function getRocomandari() {
+        $query = $this->dsql_connection->dsql();
+        $counts = [];
+        $recomandari = [];
+        $result = $query
+            ->field('p.*')
+            ->table('history', 'h')
+            ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
+            ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
+            ->get();
+        foreach($result as $res) {
+            if(!isset($counts[$res['idp']])) {
+                $counts[$res['idp']] = 0;
+            }
+
+            $counts[$res['idp']]++;
+        }
+        uksort($counts, function ($item1, $item2) {
+            return $item1['price'] <= $item2['price'];
+        });
+
+        foreach($counts as $key => $c) {
+            $key = array_search($key, array_column($result, 'idp'));
+            $recomandari[] = $result[$key];
+        }
+
+        return $recomandari;
+    }
+
+    public function getHistory() {
+        $query = $this->dsql_connection->dsql();
+        try {
+            $result = $query
+                ->field('p.*')
+                ->field('h.totalprice, h.idh')
+                ->field('u.email')
+                ->table('history', 'h')
+                ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
+                ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
+                ->join('users u', new Expression("u.idu=h.idu"), "inner")
+                ->get();
+        }catch(Exception $e) {
+            print_r($e);
+        }
+
+        return $this->_group_by($result, 'idh');
+    }
+
+    private function _group_by($array, $key) {
+        $return = array();
+        foreach($array as $val) {
+            $return[$val[$key]][] = $val;
+        }
+        return $return;
+    }
 }

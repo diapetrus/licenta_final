@@ -43,6 +43,15 @@ class PizzaController extends BasicController
         $this->get();
     }
 
+    public function adminHistoryAction()
+    {
+        $pizzaModel = new PizzaModel();
+        $history = $pizzaModel->getHistory();
+        $homepage = $this->render('/views/home/history_content.php', array('history' => $history));
+        $this->content .= $this->render('/views/home/home_content.php', array('homePage' => $homepage));
+        $this->get();
+    }
+
     public function addPizzaPage()
     {
         $pizzaModel = new PizzaModel();

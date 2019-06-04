@@ -33,6 +33,7 @@ function pizza_routes_definitions()
         '/remove-from-cart/{$id:([0-9]+)}' => 'Controllers\CartController::removeFromCart',
         '/adminPage' => 'Controllers\PizzaController::adminPageAction',
         '/adminPage/add' => 'Controllers\PizzaController::addPizzaPage',
+        '/adminPage/history' => 'Controllers\PizzaController::adminHistoryAction',
         '/adminPage/update/{$id:([0-9]+)}' => array(
             'GET' => 'Controllers\PizzaController::updatePizzaPage',
             'POST' => 'Controllers\PizzaController::updatePizzaPage',
