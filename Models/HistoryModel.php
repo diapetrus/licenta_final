@@ -38,6 +38,7 @@ class HistoryModel extends BasicModel
             $query->table('history_products')
                 ->set('idp', $item['pizza']->getIdp())
                 ->set('idh', $lastInsertedId)
+                ->set('quantity', $item['quantity'])
                 ->insert();
         }
 

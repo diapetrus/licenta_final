@@ -147,6 +147,7 @@ class PizzaModel extends BasicModel
                 ->field('p.*')
                 ->field('h.totalprice, h.idh')
                 ->field('u.email')
+                ->field('hp.quantity')
                 ->table('history', 'h')
                 ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
                 ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
