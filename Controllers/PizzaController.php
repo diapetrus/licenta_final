@@ -29,8 +29,19 @@ class PizzaController extends BasicController
     public function searchPageAction() {
         $pizzaModel = new PizzaModel();
         $pizza = $pizzaModel->findByTitle($_GET['titlep']);
-        $this->content = $this->render('/views/pizza/individual_pizza_page.php', array("pizza" => $pizza));
-        $this->get();
+        if ($_GET['q'] === '/search') {
+            $this->title = "Search";
+            //redirect('/search');
+        }
+        $homePage = pizza_generate($pizza);
+        $recomandari = $pizzaModel->getRocomandari();
+        $this->content = $this->render('/views/home/home_content.php', array("homePage" => $homePage));
+        $sidebar = $this->render('/views/forms/home_search_form.php', array(
+            'searchFields' => $_GET,
+            'messages' => render_messages(get_messages()),
+            'recomandari' => $recomandari
+        ));
+        $this->renderLayout('/views/layouts/sidebar_page.php', array('sidebar' => $sidebar));
     }
 
     public function adminPageAction()

@@ -87,7 +87,7 @@ function get_session_user()
 function pizza_generate($pizzas)
 {
     $homePage = '';
-    if($pizzas!=NULL){
+    if($pizzas!=NULL) {
         foreach ($pizzas as $pizza) {
             $homePage .= pizza_render_template('/views/pizza/pizza_box.php', array('pizza' => $pizza));
         }

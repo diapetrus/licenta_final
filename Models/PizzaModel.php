@@ -64,18 +64,20 @@ class PizzaModel extends BasicModel
     public function findByTitle($titlep)
     {
         $query = $this->dsql_connection->dsql();
+
         $result = $query
             ->table('pizza')
-            ->where('titlep', "=", $titlep)
-            ->getRow();
+            ->where('titlep', "LIKE", '%'.$titlep.'%')
+            ->get();
         $pizza = NULL;
         if ($result) {
-            $pizza = new PizzaEntity(array(
-                    "idp" => $result['idp'],
-                    "titlep" => $result['titlep'],
-                    "describep" => $result['describep'],
-                    "imagep" => $result['imagep'],
-                    "pricep" => $result['pricep'],
+            foreach ($result as $res)
+            $pizza[] = new PizzaEntity(array(
+                    "idp" => $res['idp'],
+                    "titlep" => $res['titlep'],
+                    "describep" => $res['describep'],
+                    "imagep" => $res['imagep'],
+                    "pricep" => $res['pricep'],
                 )
             );
         }
