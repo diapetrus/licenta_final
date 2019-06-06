@@ -13,24 +13,35 @@ use Models\PizzaModel;
 
 class HomeController extends BasicController
 {
+    public $pizzaModel;
 
     public function __construct()
     {
         parent::__construct();
         $this->title = "Homepage";
+        $this->pizzaModel = new PizzaModel();
     }
 
     public function homePageAction()
     {
-        $pizzaModel = new PizzaModel();
-        $pizza = $pizzaModel->getPizza();
+        $pizza = $this->pizzaModel->getPizza();
         if ($_GET['q'] === '/search') {
             $this->title = "Search";
             redirect('/search');
         }
-        $homePage = pizza_generate($pizza);
-        $recomandari = $pizzaModel->getRocomandari();
-        //print_r($recomandari);die;
+
+        $this->generatePage($pizza);
+    }
+
+    public function filterAction() {
+        $pizza = $this->pizzaModel->filter($_GET);
+        $this->generatePage($pizza);
+    }
+
+    private function generatePage($pizza) {
+        $filter = $this->render('/views/pizza/filter.php');
+        $homePage = $filter.pizza_generate($pizza);
+        $recomandari = $this->pizzaModel->getRocomandari();
         $this->content = $this->render('/views/home/home_content.php', array('homePage' => $homePage));
         $sidebar = $this->render('/views/forms/home_search_form.php', array(
             'searchFields' => $_GET,

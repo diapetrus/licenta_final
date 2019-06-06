@@ -64,22 +64,22 @@ class PizzaModel extends BasicModel
     public function findByTitle($titlep)
     {
         $query = $this->dsql_connection->dsql();
-
-        $result = $query
+        $data = $query
             ->table('pizza')
-            ->where('titlep', "LIKE", '%'.$titlep.'%')
+            ->where('titlep', "like", '%'.$titlep.'%')
             ->get();
-        $pizza = NULL;
-        if ($result) {
-            foreach ($result as $res)
-            $pizza[] = new PizzaEntity(array(
-                    "idp" => $res['idp'],
-                    "titlep" => $res['titlep'],
-                    "describep" => $res['describep'],
-                    "imagep" => $res['imagep'],
-                    "pricep" => $res['pricep'],
-                )
-            );
+        $pizza = [];
+        if ($data) {
+            foreach($data as $result) {
+                $pizza[] = new PizzaEntity(array(
+                        "idp" => $result['idp'],
+                        "titlep" => $result['titlep'],
+                        "describep" => $result['describep'],
+                        "imagep" => $result['imagep'],
+                        "pricep" => $result['pricep'],
+                    )
+                );
+            }
         }
         return $pizza;
     }
@@ -92,6 +92,7 @@ class PizzaModel extends BasicModel
             ->set('describep', $params["describep"])
             ->set('pricep', $params["pricep"])
             ->set('imagep', $params["imagep"])
+            ->set('type', $params["type"])
             ->insert();
     }
 
@@ -101,7 +102,8 @@ class PizzaModel extends BasicModel
         $query->table('pizza')
             ->set('describep', $params["describep"])
             ->set('pricep', $params["pricep"])
-            ->set('imagep', $params["imagep"]);
+            ->set('imagep', $params["imagep"])
+            ->set('type', $params["type"]);
         $query->where("idp", "=", $idp)->update();
     }
 
@@ -172,5 +174,41 @@ class PizzaModel extends BasicModel
             $return[$val[$key]][] = $val;
         }
         return $return;
+    }
+
+    public function filter($params) {
+        $query = $this->dsql_connection->dsql();
+        $q = $query->table('pizza');
+
+        if(isset($params['type']) && $params['type'] !== '') {
+            $q->where('type', '=', $params['type']);
+        }
+
+        if(isset($params['min_price']) && $params['min_price'] > 0) {
+            $q->where('pricep', '>', $params['min_price']);
+        }
+//
+        if(isset($params['max_price']) && $params['max_price'] > 0) {
+            $q->where('pricep', '<', $params['max_price']);
+        }
+
+        $data = $q->get();
+
+        $pizza = [];
+        if ($data) {
+            foreach($data as $result) {
+                $pizza[] = new PizzaEntity(array(
+                        "idp" => $result['idp'],
+                        "titlep" => $result['titlep'],
+                        "describep" => $result['describep'],
+                        "imagep" => $result['imagep'],
+                        "pricep" => $result['pricep'],
+                    )
+                );
+            }
+        }
+        return $pizza;
+
+        return $result;
     }
 }

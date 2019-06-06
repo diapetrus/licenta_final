@@ -13,6 +13,13 @@
         <input type="text" class="form-control" id="pricep" name="pricep"/>
     </div>
     <div class="form-group">
+        <label for="type">Tip</label>
+        <select class="form-control" id="type" name="type">
+            <option value="cu carne">Cu Carne</option>
+            <option value="fara carne">Fara Carne</option>
+        </select>
+    </div>
+    <div class="form-group">
         <label for="pricep">Image(root)</label>
         <input type="text" class="form-control" id="imagep" name="imagep"/>
     </div>

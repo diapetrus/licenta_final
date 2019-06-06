@@ -22,6 +22,9 @@ function pizza_routes_definitions()
             'GET' => 'Controllers\UserAuthenticationController::loginAdmin',
             'POST' => 'Controllers\UserAuthenticationController::loginPostAdmin',
         ),
+        '/filter' => array(
+            'GET' => 'Controllers\HomeController::filterAction',
+        ),
         '/pizza/{$id:([0-9]+)}' => 'Controllers\PizzaController::pizzaPageAction',
         '/search' => array(
             'GET' => 'Controllers\PizzaController::searchPageAction',

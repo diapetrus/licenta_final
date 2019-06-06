@@ -5,6 +5,11 @@
         <input type="text" class="form-control" id="describep" name="describep"/>
         <label for="pricep">Price</label>
         <input type="text" class="form-control" id="pricep" name="pricep"/>
+        <label for="type">Tip</label>
+        <select class="form-control" id="type">
+            <option value="cu carne">Cu Carne</option>
+            <option value="fara carne">Fara Carne</option>
+        </select>
         <label for="imagep">Image(root)</label>
         <input type="text" class="form-control" id="imagep" name="imagep"/>
     </div>
