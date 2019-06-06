@@ -6,6 +6,7 @@
                 <option value=""></option>
                 <option value="cu carne">Cu Carne</option>
                 <option value="fara carne">Fara Carne</option>
+                <option value="cu peste">Cu peste</option>
             </select>
         </div>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
