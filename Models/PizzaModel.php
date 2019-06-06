@@ -115,28 +115,32 @@ class PizzaModel extends BasicModel
         $query = $this->dsql_connection->dsql();
         $counts = [];
         $recomandari = [];
-        $result = $query
-            ->field('p.*')
-            ->field('hp.quantity')
-            ->table('history', 'h')
-            ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
-            ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
-            ->get();
-        foreach($result as $res) {
-            if (!isset($counts[$res['idp']])) {
-                $counts[$res['idp']] = 0;
+        if(isset($_SESSION['user'])) {
+            $result = $query
+                ->field('p.*')
+                ->field('hp.quantity')
+                ->table('history', 'h')
+                ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
+                ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
+                ->where('h.idu', '=', $_SESSION['user']->idu)
+                ->get();
+            foreach ($result as $res) {
+                if (!isset($counts[$res['idp']])) {
+                    $counts[$res['idp']] = 0;
+                }
+
+                $counts[$res['idp']] += $res['quantity'];
             }
+            arsort($counts);
+            //uksort($counts, function ($item1, $item2) {
 
-            $counts[$res['idp']] += $res['quantity'];
+            //  return $item1['price'] <= $item2['price'];
+            //});
+            foreach ($counts as $key => $c) {
+                $key = array_search($key, array_column($result, 'idp'));
+                $recomandari[] = $result[$key];
+            }
         }
-        uksort($counts, function ($item1, $item2) {
-            return $item1['price'] <= $item2['price'];
-        });
-        foreach($counts as $key => $c) {
-            $key = array_search($key, array_column($result, 'idp'));
-            $recomandari[] = $result[$key];
-        }
-
         return $recomandari;
     }
 

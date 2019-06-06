@@ -30,6 +30,7 @@ class HomeController extends BasicController
         }
         $homePage = pizza_generate($pizza);
         $recomandari = $pizzaModel->getRocomandari();
+        //print_r($recomandari);die;
         $this->content = $this->render('/views/home/home_content.php', array('homePage' => $homePage));
         $sidebar = $this->render('/views/forms/home_search_form.php', array(
             'searchFields' => $_GET,
