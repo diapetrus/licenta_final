@@ -15,7 +15,7 @@ class UserAuthenticationController extends BasicController
     public function __construct()
     {
         parent::__construct();
-        $this->title = "User Authentication";
+        $this->title = "Autentificare";
     }
 
     public function registerPageAction ()
@@ -36,7 +36,7 @@ class UserAuthenticationController extends BasicController
             $user = new UserModel();
             if ($user->isRegistrationValid($email, $password, $passwordConfirmation, $address, $phone)) {
                 $user->createUser($email, $password, $address, $phone);
-                set_message('User successfully created!', 'status');
+                set_message('Utilizator creat cu succes!', 'status');
                 redirect('/login');
             }
         }
@@ -78,7 +78,7 @@ class UserAuthenticationController extends BasicController
             if ($userModel->areValidCredentials($email, $password)) {
                 $user = $userModel->loadByEmail($email);
                 $user->updateSession();
-                set_message('Logged in successfully!', 'status');
+                set_message('Logat cu succes!', 'status');
                 redirect('/');
             }
         }
@@ -91,6 +91,5 @@ class UserAuthenticationController extends BasicController
         $userModel->logout();
         redirect('/');
     }
-
 
 }

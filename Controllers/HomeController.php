@@ -41,12 +41,12 @@ class HomeController extends BasicController
     private function generatePage($pizza) {
         $filter = $this->render('/views/pizza/filter.php');
         $homePage = $filter.pizza_generate($pizza);
-        $recomandari = $this->pizzaModel->getRocomandari();
+        $recommendation = $this->pizzaModel->getRecommendation();
         $this->content = $this->render('/views/home/home_content.php', array('homePage' => $homePage));
         $sidebar = $this->render('/views/forms/home_search_form.php', array(
             'searchFields' => $_GET,
             'messages' => render_messages(get_messages()),
-            'recomandari' => $recomandari
+            'recommendation' => $recommendation
         ));
         $this->renderLayout('/views/layouts/sidebar_page.php', array('sidebar' => $sidebar));
     }

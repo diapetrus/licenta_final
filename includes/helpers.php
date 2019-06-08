@@ -92,6 +92,8 @@ function pizza_generate($pizzas)
             $homePage .= pizza_render_template('/views/pizza/pizza_box.php', array('pizza' => $pizza));
         }
     }
+    else
+        $homePage .= "NOT FOUND!!!";
     return $homePage;
 }
 

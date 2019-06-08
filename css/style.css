@@ -68,11 +68,12 @@ form {
     padding: 0.5em;
 }
 
-#admin-book-table td {
+#admin-table td {
     text-align: center;
+
 }
 
-#admin-book-table th {
+#admin-table th {
     text-align: center;
 }
 
@@ -110,6 +111,31 @@ form {
     margin-bottom: 30px;
 }
 
+.h-btn {
+    float: left;
+    margin-bottom: 30px;
+}
+
 .total-price {
     float: right;
+    font-size: x-large;
+    color: whitesmoke;
+    background-color: #222222;
+
+}
+
+td{
+    text-align: center;
+}
+
+th{
+    text-align: center;
+}
+
+.recommendation{
+    margin-top: 25px;
+}
+
+.text-center{
+    text-align: center;
 }

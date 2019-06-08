@@ -1,9 +1,9 @@
 <form method="post">
     <label>
-        Are you sure you want to delete  "<?php echo $pizza->getTitlep() ?>" ?
+        Sunteti sigur ca doriti sa stergeti  "<?php echo $pizza->getTitlep() ?>" ?
     </label>
     <br>
-    <input type="submit" value="Yes" name="confirm"/>
-    <input type="submit" value="No" name="no-confirm"/>
+    <input type="submit" value="Da" name="confirm"/>
+    <input type="submit" value="Nu" name="no-confirm"/>
 </form>
 

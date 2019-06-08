@@ -50,9 +50,17 @@ class CartController extends BasicController
 
     public function showCart()
     {
-        $this->title = "Cart";
+        $this->title = "Cosul meu";
+        //$this->checkPromotions();
         $this->content = $this->render('/views/cart/cart.php');
         $this->get();
     }
 
+
+    /*
+    public function checkPromotions() {
+        if($this->pizzamediapro())
+            $promotie = $this->
+    }
+    */
 }

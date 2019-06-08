@@ -15,6 +15,8 @@ class PizzaEntity
     private $describep;
     private $imagep;
     private $pricep;
+    private $type;
+    private $size;
 
     public function __construct($param)
     {
@@ -102,4 +104,37 @@ class PizzaEntity
     {
         $this->pricep = $pricep;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * @param mixed $size
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+    }
+
+    /**
+     * @param mixed $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+    }
+
 }

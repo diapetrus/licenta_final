@@ -10,26 +10,25 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="password">Password:</label>
+            <label class="control-label col-sm-4" for="password">Parola:</label>
             <div class="col-sm-5">
-                <input type='password' class="form-control" name="password" id="password" placeholder="password"/>
+                <input type='password' class="form-control" name="password" id="password" placeholder="********"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="confirm-password">Confirm password:</label>
+            <label class="control-label col-sm-4" for="confirm-password">Confirmare parola:</label>
             <div class="col-sm-5">
-                <input type='password' class="form-control" name="confirm-password" id="confirm-password"
-                       placeholder="confirm-password"/>
+                <input type='password' class="form-control" name="confirm-password" id="confirm-password" placeholder="********"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Address:</label>
+            <label class="control-label col-sm-4" for="email">Adresa de livrare:</label>
             <div class="col-sm-5">
-                <input type='text' class="form-control" name="address" id="address" placeholder="address"/>
+                <input type='text' class="form-control" name="address" id="address" placeholder="adresa"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Phone:</label>
+            <label class="control-label col-sm-4" for="email">Numar de telefon:</label>
             <div class="col-sm-5">
                 <input type='text' class="form-control" name="phone" id="phone" placeholder="07xxxxxxxx"/>
             </div>

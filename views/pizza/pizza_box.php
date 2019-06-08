@@ -10,6 +10,9 @@
                 <?php echo $pizza->getDescribep() ?>
             </div>
             <div>
+                Marime: <?php echo $pizza->getSize() ?>
+            </div>
+            <div>
                 <?php echo $pizza->getPricep() ?> Lei
             </div>
             <form method="post" action="/add-cart">

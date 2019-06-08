@@ -4,12 +4,20 @@
             <label for="type">Tip</label>
             <select class="form-control" id="type" name="type">
                 <option value=""></option>
-                <option value="cu carne">Cu Carne</option>
-                <option value="fara carne">Fara Carne</option>
-                <option value="cu peste">Cu peste</option>
+                <option value="Cu Carne">Cu Carne</option>
+                <option value="Fara Carne">Fara Carne</option>
+                <option value="Cu Peste">Cu Peste</option>
             </select>
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <div class="form-group">
+            <label for="size">Marime</label>
+            <select class="form-control" id="size" name="size">
+                <option value=""></option>
+                <option value="Mica">Mica</option>
+                <option value="Medie">Medie</option>
+                <option value="Mare">Mare</option>
+            </select>
+        </div>
         <label for="type">Pret</label>
         <div class="form-group">
             <input type="text" class="form-control" placeholder="Pret minim" name="min_price">

@@ -30,16 +30,15 @@ class PizzaController extends BasicController
         $pizzaModel = new PizzaModel();
         $pizza = $pizzaModel->findByTitle($_GET['titlep']);
         if ($_GET['q'] === '/search') {
-            $this->title = "Search";
-            //redirect('/search');
+            $this->title = "Cautare";
         }
         $homePage = pizza_generate($pizza);
-        $recomandari = $pizzaModel->getRocomandari();
+        $recommendation = $pizzaModel->getRecommendation();
         $this->content = $this->render('/views/home/home_content.php', array("homePage" => $homePage));
         $sidebar = $this->render('/views/forms/home_search_form.php', array(
             'searchFields' => $_GET,
             'messages' => render_messages(get_messages()),
-            'recomandari' => $recomandari
+            'recommendation' => $recommendation
         ));
         $this->renderLayout('/views/layouts/sidebar_page.php', array('sidebar' => $sidebar));
     }

@@ -10,14 +10,14 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="password">Password:</label>
+            <label class="control-label col-sm-4" for="password">Parola:</label>
             <div class="col-sm-5">
                 <input type='password' class="form-control " name="password" id="password"/>
             </div>
         </div>
         <div class="from-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button type="submit" class="btn btn-default">Login</button>
+                <button type="submit" class="btn btn-default">Conecteaza-te ca administrator</button>
             </div>
         </div>
     </form>

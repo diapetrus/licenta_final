@@ -11,7 +11,10 @@
                 <?php echo $pizza->getDescribep(); ?>
             </div>
             <div class="col-sm-offset-6 col-sm-6">
-                <strong><?php echo $pizza->getPricep(); ?> Lei</strong>
+                Marime: <?php echo $pizza->getSize(); ?>
+            </div>
+            <div class="col-sm-offset-6 col-sm-6">
+                Pret/buc: <?php echo $pizza->getPricep(); ?> Lei
             </div>
             <form method="post" action="/add-cart">
                 <div class="col-sm-offset-6 col-sm-2">
@@ -22,7 +25,18 @@
                 <div class="col-sm-offset-6 col-sm-6">
                     <input type="submit" value="Comanda"  class="btn btn-primary" />
                 </div>
+                <div class="col-sm-offset-6 col-sm-6" id="total"></div>
             </form>
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        var pret = parseFloat('<?php echo $pizza->getPricep(); ?>');
+        $("#quantity").on('change', function () {
+            var cantitate = parseFloat($(this).val());
+            total = (cantitate*pret).toFixed(2);
+            $("#total").html('Total: '+total);
+        })
+    })
+</script>

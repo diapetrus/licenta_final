@@ -34,6 +34,8 @@ class PizzaModel extends BasicModel
                         "describep" => $res['describep'],
                         "imagep" => $res['imagep'],
                         "pricep" => $res['pricep'],
+                        "type" => $res['type'],
+                        "size" => $res['size'],
                     )
                 );
             }
@@ -55,6 +57,8 @@ class PizzaModel extends BasicModel
                     "describep" => $result['describep'],
                     "imagep" => $result['imagep'],
                     "pricep" => $result['pricep'],
+                    "type" => $result['type'],
+                    "size" => $result['size'],
                 )
             );
         }
@@ -77,6 +81,7 @@ class PizzaModel extends BasicModel
                         "describep" => $result['describep'],
                         "imagep" => $result['imagep'],
                         "pricep" => $result['pricep'],
+                        "size" => $result['size']
                     )
                 );
             }
@@ -93,6 +98,7 @@ class PizzaModel extends BasicModel
             ->set('pricep', $params["pricep"])
             ->set('imagep', $params["imagep"])
             ->set('type', $params["type"])
+            ->set('size', $params["size"])
             ->insert();
     }
 
@@ -103,7 +109,8 @@ class PizzaModel extends BasicModel
             ->set('describep', $params["describep"])
             ->set('pricep', $params["pricep"])
             ->set('imagep', $params["imagep"])
-            ->set('type', $params["type"]);
+            ->set('type', $params["type"])
+            ->set('size', $params["size"]);
         $query->where("idp", "=", $idp)->update();
     }
 
@@ -115,10 +122,10 @@ class PizzaModel extends BasicModel
             ->delete();
     }
 
-    public function getRocomandari() {
+    public function getRecommendation() {
         $query = $this->dsql_connection->dsql();
         $counts = [];
-        $recomandari = [];
+        $recommendation = [];
         if(isset($_SESSION['user'])) {
             $result = $query
                 ->field('p.*')
@@ -136,16 +143,12 @@ class PizzaModel extends BasicModel
                 $counts[$res['idp']] += $res['quantity'];
             }
             arsort($counts);
-            //uksort($counts, function ($item1, $item2) {
-
-            //  return $item1['price'] <= $item2['price'];
-            //});
             foreach ($counts as $key => $c) {
                 $key = array_search($key, array_column($result, 'idp'));
-                $recomandari[] = $result[$key];
+                $recommendation[] = $result[$key];
             }
         }
-        return $recomandari;
+        return $recommendation;
     }
 
     public function getHistory() {
@@ -184,10 +187,14 @@ class PizzaModel extends BasicModel
             $q->where('type', '=', $params['type']);
         }
 
+        if(isset($params['size']) && $params['size'] !== '') {
+            $q->where('size', '=', $params['size']);
+        }
+
         if(isset($params['min_price']) && $params['min_price'] > 0) {
             $q->where('pricep', '>', $params['min_price']);
         }
-//
+
         if(isset($params['max_price']) && $params['max_price'] > 0) {
             $q->where('pricep', '<', $params['max_price']);
         }
@@ -203,12 +210,12 @@ class PizzaModel extends BasicModel
                         "describep" => $result['describep'],
                         "imagep" => $result['imagep'],
                         "pricep" => $result['pricep'],
+                        "size" => $result['size']
                     )
                 );
             }
         }
         return $pizza;
 
-        return $result;
     }
 }

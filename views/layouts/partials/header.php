@@ -7,25 +7,25 @@
             </a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/"> Home</a></li>
-            <li><a href="/admin"> Admin</a></li>
+            <li><a href="/"> Acasa</a></li>
+            <li><a href="/admin"> Administrator</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="logged-out">
                 <a href="/login">
                     <span class="glyphicon glyphicon-log-in">
-                    </span> Login
+                    </span> Contentare
                 </a>
             </li>
             <li class="logged-in">
                 <a href="/cart">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Cart
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Cosul meu
                 </a>
             </li>
             <li class="logged-in">
                 <a href="/logout">
                     <span class="glyphicon glyphicon-log-out">
-                    </span> Logout
+                    </span> Deconectare
                 </a>
             </li>
         </ul>
