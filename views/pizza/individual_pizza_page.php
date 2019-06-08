@@ -1,31 +1,32 @@
-<div class="container">
-    <div class="row">
-        <div class="image-wrapper col-sm-6">
-            <img class="image-individual" src="<?php echo $pizza->getImagep() ?>">
+<div>
+    <div class="col-sm-12">
+        <div class="col-sm-4 ">
+            <img class="col-sm-4 border-image image-individual" src="<?php echo $pizza->getImagep() ?>">
         </div>
-        <div class="col-sm-6">
-            <div class="col-sm-offset-6 col-sm-6">
-                <h1><strong><?php echo $pizza->getTitlep(); ?></strong></h1>
+        <div class="col-sm-8">
+            <div class="col-sm-offset-4 col-sm-8 title">
+                <?php echo $pizza->getTitlep(); ?>
             </div>
-            <div class="col-sm-offset-6 col-sm-6">
-                <?php echo $pizza->getDescribep(); ?>
+            <div class="col-sm-offset-4 col-sm-8 describe" >
+                Ingrediente: <?php echo $pizza->getDescribep(); ?>
             </div>
-            <div class="col-sm-offset-6 col-sm-6">
+            <div class="col-sm-offset-4 col-sm-8 size">
                 Marime: <?php echo $pizza->getSize(); ?>
             </div>
-            <div class="col-sm-offset-6 col-sm-6">
-                Pret/buc: <?php echo $pizza->getPricep(); ?> Lei
+            <div class="col-sm-offset-4 col-sm-6 price">
+                Pret unitar: <?php echo $pizza->getPricep(); ?> Lei
             </div>
             <form method="post" action="/add-cart">
-                <div class="col-sm-offset-6 col-sm-2">
-                    <label for="quantity">Cantitate</label>
+                <div class="col-sm-offset-4 col-sm-2 quantity">
+                    <label for="quantity" class="quantity">Cantitate</label>
                     <input type="number" class="form-control" id="quantity" name="quantity" value="1"/>
                     <input type="hidden" name="pizza" value="<?php echo $pizza->getIdp() ?>">
                 </div>
-                <div class="col-sm-offset-6 col-sm-6">
-                    <input type="submit" value="Comanda"  class="btn btn-primary" />
+                <div class="col-sm-offset-4 col-sm-8 price" id="total"></div>
+                <div class="col-sm-offset-4 col-sm-8 cos">
+                    <input type="submit" value="Adauga in cos"  class="btn btn-primary " />
                 </div>
-                <div class="col-sm-offset-6 col-sm-6" id="total"></div>
+
             </form>
         </div>
     </div>
@@ -36,7 +37,7 @@
         $("#quantity").on('change', function () {
             var cantitate = parseFloat($(this).val());
             total = (cantitate*pret).toFixed(2);
-            $("#total").html('Total: '+total);
+            $("#total").html('Total: '+ total + ' Lei');
         })
     })
 </script>

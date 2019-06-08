@@ -13,7 +13,7 @@
                 Marime: <?php echo $pizza->getSize() ?>
             </div>
             <div>
-                <?php echo $pizza->getPricep() ?> Lei
+                Pret: <?php echo $pizza->getPricep() ?> Lei
             </div>
             <form method="post" action="/add-cart">
                 <div>
@@ -22,7 +22,7 @@
                     <input type="hidden" name="pizza" value="<?php echo $pizza->getIdp() ?>">
                 </div>
                 <div>
-                    <input type="submit" value="Comanda"  class="btn btn-primary" />
+                    <input type="submit" value="Adauga in cos"  class="btn btn-primary" />
                 </div>
             </form>
         </div>
