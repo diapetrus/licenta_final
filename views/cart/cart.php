@@ -5,35 +5,47 @@ if(isset($_SESSION['user']->cart)) {
         $total += $item['pizza']->getPricep() * $item['quantity'];
     }
 }
+if ($total<50)
+    $transport=10;
+else
+    $transport=0;
 ?>
 <?php if(isset($_SESSION['user']->cart)) : ?>
-<table id="admin-table" class="table table-bordered table-striped">
+    <p class="adv"> * Transportul este GRATUIT la orice comandă de peste 50 de lei!</p>
+<table class="table table-bordered table-striped">
     <tbody>
     <tr>
         <th></th>
         <th>Produs</th>
-        <th>Pret unitar</th>
+        <th>Preț unitar</th>
         <th>Cantitate</th>
-        <th>Pret total</th>
-        <th>Elimina din cos</th>
+        <th>Preț total</th>
+        <th>Elimina din coș</th>
     </tr>
         <?php foreach($_SESSION['user']->cart as $item): ?>
         <tr>
             <th class="col-sm-2"><img class="img-thumbnail" src="<?= $item['pizza']->getImagep(); ?>"></th>
             <th class="col-sm-2"><h3><?= $item['pizza']->getTitlep(); ?></h3><br><?= $item['pizza']->getDescribep(); ?></th>
-            <th class="col-sm-2"><?= $item['pizza']->getPricep(); ?></th>
+            <th class="col-sm-2"><?= $item['pizza']->getPricep(); ?> lei</th>
             <th class="col-sm-2"><?= $item['quantity']; ?></th>
-            <th class="col-sm-2"><?= $item['pizza']->getPricep() * $item['quantity']; ?>
-            <th class="col-sm-2"><a href="/remove-from-cart/<?= $item['pizza']->getIdp(); ?>" class="btn btn-primary glyphicon glyphicon-trash"> Sterge</a>
+            <th class="col-sm-2"><?= $item['pizza']->getPricep() * $item['quantity']; ?> lei</th>
+            <th class="col-sm-2"><a href="/remove-from-cart/<?= $item['pizza']->getIdp(); ?>" class="btn btn-primary glyphicon glyphicon-trash"> Șterge</a></th>
         </tr>
         <?php endforeach; ?>
         <tr>
-            <th></th><th></th><th></th><th></th><th></th>
-            <th class="total-price col-sm-2">Total cos: <?= $total; ?></th>
+            <th></th><th></th><th></th><th></th>
+            <th class="total-price col-sm-2">Transport: </th>
+            <th class="total-price col-sm-2"><?= $transport ?> lei</th>
         </tr>
+        <tr>
+            <th></th><th></th><th></th><th></th>
+            <th class="total-price col-sm-2">Total coș: </th>
+            <th class="total-price col-sm-2"><?= $total + $transport; ?> lei</th>
+        </tr>
+
     </tbody>
 </table>
-<a href="/history" class="total-price btn btn-primary">Finalizeaza comanda</a>
+<a href="/history" class="total-price dist btn btn-primary">Finalizează comanda</a>
 <?php else:  ?>
-<div>Cosul dumneavoastra este gol</div>
+<div>Coșul dumneavoastră este gol</div>
 <?php endif; ?>

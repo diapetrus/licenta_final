@@ -124,9 +124,7 @@ form {
 .total-price {
     float: right;
     font-size: x-large;
-    color: whitesmoke;
-    background-color: #222222;
-
+    font-family: Comic Sans MS, sans-serif;
 }
 
 td{
@@ -182,4 +180,14 @@ th{
 .cos{
     text-align: center;
     margin-right: 50px;
+}
+
+.dist{
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+.adv {
+    font-family: Comic Sans MS, sans-serif;
+    color: red;
 }

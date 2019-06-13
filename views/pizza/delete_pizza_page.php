@@ -1,6 +1,6 @@
 <form method="post">
     <label>
-        Sunteti sigur ca doriti sa stergeti  "<?php echo $pizza->getTitlep() ?>" ?
+        Sunteți sigur ca doriți să ștergeți  "<?php echo $pizza->getTitlep() ?>" ?
     </label>
     <br>
     <input type="submit" value="Da" name="confirm"/>

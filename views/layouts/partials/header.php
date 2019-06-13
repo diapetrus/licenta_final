@@ -1,4 +1,3 @@
-
 <nav class="navbar navbar-inverse">
     <div class="container-fluid">
         <div class="navbar-header">
@@ -7,19 +6,19 @@
             </a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/"> Acasa</a></li>
+            <li><a href="/"> Acasă</a></li>
             <li><a href="/admin"> Administrator</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="logged-out">
                 <a href="/login">
                     <span class="glyphicon glyphicon-log-in">
-                    </span> Contentare
+                    </span> Conectare
                 </a>
             </li>
             <li class="logged-in">
                 <a href="/cart">
-                    <span class="glyphicon glyphicon-shopping-cart"></span> Cosul meu
+                    <span class="glyphicon glyphicon-shopping-cart"></span> Coșul meu
                 </a>
             </li>
             <li class="logged-in">

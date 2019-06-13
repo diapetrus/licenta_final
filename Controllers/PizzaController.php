@@ -92,7 +92,7 @@ class PizzaController extends BasicController
     {
         $pizzaModel = new PizzaModel();
         if (!empty($_POST)) {
-            if ($_POST['confirm']=='Yes')
+            if ($_POST['confirm']=='Da')
             {
                 $pizzaModel->deletePizza($idp);
                 redirect("/adminPage");
