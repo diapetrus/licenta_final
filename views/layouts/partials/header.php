@@ -6,7 +6,8 @@
             </a>
         </div>
         <ul class="nav navbar-nav">
-            <li><a href="/"> Acasă</a></li>
+            <li><a href="/"> Pizza</a></li>
+            <li><a href="/sauce"> Sosuri</a></li>
             <li><a href="/admin"> Administrator</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
@@ -30,4 +31,3 @@
         </ul>
     </div>
 </nav>
-

@@ -87,12 +87,23 @@ function get_session_user()
 function pizza_generate($pizzas)
 {
     $homePage = '';
-    if($pizzas!=NULL) {
+    if ($pizzas != NULL) {
         foreach ($pizzas as $pizza) {
             $homePage .= pizza_render_template('/views/pizza/pizza_box.php', array('pizza' => $pizza));
         }
-    }
-    else
+    } else
+        $homePage .= "NOT FOUND!!!";
+    return $homePage;
+}
+
+function sauce_generate($sauces)
+{
+    $homePage = '';
+    if ($sauces != NULL) {
+        foreach ($sauces as $sauce) {
+            $homePage .= pizza_render_template('/views/sauce/sauce_box.php', array('sauce' => $sauce));
+        }
+    } else
         $homePage .= "NOT FOUND!!!";
     return $homePage;
 }
@@ -100,9 +111,21 @@ function pizza_generate($pizzas)
 function pizza_admin_generate($pizzas)
 {
     $homePage = '';
-    if($pizzas!=NULL){
+    if ($pizzas != NULL) {
         foreach ($pizzas as $pizza) {
             $homePage .= pizza_render_template('/views/pizza/pizza_table.php', array('pizza' => $pizza));
+        }
+    }
+    return $homePage;
+}
+
+function sauce_admin_generate($sauces)
+{
+    $homePage = '';
+    if ($sauces != NULL) {
+        print_r($sauces);die;
+        foreach ($sauces as $sauce) {
+            $homePage .= pizza_render_template('/views/sauce/sauce_table.php', array('sauce' => $sauce));
         }
     }
     return $homePage;

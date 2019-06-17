@@ -1,4 +1,4 @@
-<h1>Add a new pizza</h1>
+<h1>Adauga o pizza noua</h1>
 <form method="post" class="col-sm-2" id="show-edit-form" enctype="multipart/form-data">
     <div class="form-group">
         <label for="titlep">Denumire</label>

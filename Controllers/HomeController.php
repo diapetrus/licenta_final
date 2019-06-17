@@ -18,7 +18,7 @@ class HomeController extends BasicController
     public function __construct()
     {
         parent::__construct();
-        $this->title = "Homepage";
+        $this->title = "Pizza";
         $this->pizzaModel = new PizzaModel();
     }
 
@@ -26,7 +26,7 @@ class HomeController extends BasicController
     {
         $pizza = $this->pizzaModel->getPizza();
         if ($_GET['q'] === '/search') {
-            $this->title = "Search";
+            $this->title = "Cauta";
             redirect('/search');
         }
 

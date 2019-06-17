@@ -1,5 +1,4 @@
-<a href="/adminPage/add" class="glyphicon glyphicon-plus btn btn-primary add-btn "> Adaugă o pizza noua</a>
-<a href="/adminPage/history" class="btn btn-primary h-btn ">Istoric comenzi</a>
+<a href="/adminPage/pizza/add" class="glyphicon glyphicon-plus btn btn-primary add-btn "> Adaugă o pizza noua</a>
 <table id="admin-table" class="table table-bordered table-striped">
     <thead>
     <tr>

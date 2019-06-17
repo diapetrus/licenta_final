@@ -45,6 +45,11 @@ class PizzaController extends BasicController
 
     public function adminPageAction()
     {
+        $this->content = $this->render('/views/home/admin.php');
+        $this->get();
+    }
+
+    public function adminPizzaAction(){
         $pizzaModel = new PizzaModel();
         $pizza = $pizzaModel->getPizza();
         $pizzaPage = pizza_admin_generate($pizza);

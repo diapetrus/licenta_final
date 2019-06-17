@@ -1,5 +1,3 @@
-<a href="/adminPage/add" class="glyphicon glyphicon-plus btn btn-primary add-btn "> Add new pizza</a>
-<a href="/adminPage/history" class="btn btn-primary add-btn ">History</a>
 <table id="admin-table" class="table table-bordered table-striped">
     <thead>
     <tr>

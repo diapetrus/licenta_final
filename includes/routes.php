@@ -7,6 +7,7 @@ function pizza_routes_definitions()
             'GET' => 'Controllers\HomeController::homePageAction',
         ),
         '/' => 'Controllers\HomeController::homePageAction',
+        '/sauce' => 'Controllers\SauceController::homeSaucePageAction',
         '/register' => array(
             'GET' => 'Controllers\UserAuthenticationController::registerPageAction',
             'POST' => 'Controllers\UserAuthenticationController::registerPost',
@@ -26,6 +27,7 @@ function pizza_routes_definitions()
             'GET' => 'Controllers\HomeController::filterAction',
         ),
         '/pizza/{$id:([0-9]+)}' => 'Controllers\PizzaController::pizzaPageAction',
+        '/sauce/{$id:([0-9]+)}' => 'Controllers\SauceController::saucePageAction',
         '/search' => array(
             'GET' => 'Controllers\PizzaController::searchPageAction',
         ),
@@ -35,15 +37,26 @@ function pizza_routes_definitions()
         '/cart' => 'Controllers\CartController::showCart',
         '/remove-from-cart/{$id:([0-9]+)}' => 'Controllers\CartController::removeFromCart',
         '/adminPage' => 'Controllers\PizzaController::adminPageAction',
-        '/adminPage/add' => 'Controllers\PizzaController::addPizzaPage',
+        '/adminPage/pizza' => 'Controllers\PizzaController::adminPizzaAction',
+        '/adminPage/sauce' => 'Controllers\SauceController::adminSauceAction',
+        '/adminPage/pizza/add' => 'Controllers\PizzaController::addPizzaPage',
+        '/adminPage/sauce/add' => 'Controllers\SauceController::addSaucePage',
         '/adminPage/history' => 'Controllers\PizzaController::adminHistoryAction',
-        '/adminPage/update/{$id:([0-9]+)}' => array(
+        '/adminPage/pizza/update/{$id:([0-9]+)}' => array(
             'GET' => 'Controllers\PizzaController::updatePizzaPage',
             'POST' => 'Controllers\PizzaController::updatePizzaPage',
         ),
-        '/adminPage/delete/{$id:([0-9]+)}' => array(
+        '/adminPage/pizza/delete/{$id:([0-9]+)}' => array(
             'GET' => 'Controllers\PizzaController::deletePizzaPage',
             'POST' => 'Controllers\PizzaController::deletePizzaPage',
+        ),
+        '/adminPage/sauce/update/{$id:([0-9]+)}' => array(
+            'GET' => 'Controllers\SauceController::updateSaucePage',
+            'POST' => 'Controllers\SauceController::updateSaucePage',
+        ),
+        '/adminPage/sauce/delete/{$id:([0-9]+)}' => array(
+            'GET' => 'Controllers\SauceController::deleteSaucePage',
+            'POST' => 'Controllers\SauceController::deleteSaucePage',
         ),
         '/history' => 'Controllers\CartController::history',
     );
