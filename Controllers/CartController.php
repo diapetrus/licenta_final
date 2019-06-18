@@ -11,21 +11,32 @@ namespace Controllers;
 
 use Models\HistoryModel;
 use Models\PizzaModel;
+use Models\SauceModel;
 
 class CartController extends BasicController
 {
     public function addToCart()
     {
         $pizzaModel = new PizzaModel();
+        $sauceModel = new SauceModel();
         $pizza = $pizzaModel->getPizzaById($_POST['pizza']);
+        $sauce = $sauceModel->getSauceById($_POST['sauce']);
         if ($_SESSION['user']->idu) {
-            $_SESSION['user']->cart[] = [
-                'pizza' => $pizza,
-                'quantity' => $_POST['quantity']
-            ];
+            if ($pizza) {
+                $_SESSION['user']->cart[] = [
+                    'pizza' => $pizza,
+                    'quantity' => $_POST['quantity']
+                ];
+            }
+            else {
+                if ($sauce){
+                    $_SESSION['user']->cart[] = [
+                        'sauce' => $sauce,
+                        'quantity' => $_POST['quantity']];
+                }
+            }
             redirect('/');
-        }
-        else
+        } else
             redirect('/login');
     }
 
@@ -37,6 +48,10 @@ class CartController extends BasicController
             if ($item['pizza']->getIdp() === $idp) {
                 unset($_SESSION['user']->cart[$key]);
             }
+            else
+                if ($item['sauce']->getIds() === $idp){
+                    unset($_SESSION['user']->cart[$key]);
+                }
         }
         redirect('/cart');
     }

@@ -4,19 +4,20 @@
         <th class="col-sm-2">Utilizator</th>
         <th class="col-sm-2">Pretul total</th>
         <th class="col-sm-2">Cantitate</th>
-        <th class="col-sm-2">Pizza</th>
+        <th class="col-sm-2">Produse</th>
     </tr>
     </thead>
     <tbody>
         <?php if(isset($history) && count($history) > 0) :?>
-            <?php foreach($history as $item) :?>
+            <?php foreach($history as $item) : print_r($item);?>
                 <tr>
                     <td><?=$item[0]['email']?></td>
                     <td><?=$item[0]['totalprice']?></td>
                     <td><?php foreach ($item as $i) : ?><p><?=$i['quantity']?></p>
                     <?php endforeach;?>
                     <td>
-                        <?php foreach($item as $pizza) : ?>
+                        <?php foreach($item as $pizza) : print_r($pizza);?>
+                        <p><?= $pizza['names']?><b><?=$pizza['prices']?></b></p>
                         <p><?=$pizza['titlep']?> <b><?=$pizza['pricep']?></b></p>
                         <?php endforeach;?>
                     </td>

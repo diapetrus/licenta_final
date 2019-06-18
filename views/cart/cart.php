@@ -2,7 +2,13 @@
 $total = 0;
 if(isset($_SESSION['user']->cart)) {
     foreach($_SESSION['user']->cart as $item) {
-        $total += $item['pizza']->getPricep() * $item['quantity'];
+        if (isset($item['pizza']))
+            $total += $item['pizza']->getPricep() * $item['quantity'];
+        else{
+            if(isset($item['sauce'])){
+                $total += $item['sauce']->getPrices() * $item['quantity'];
+            }
+        }
     }
 }
 if ($total<50)
@@ -22,7 +28,8 @@ else
         <th>Preț total</th>
         <th>Elimina din coș</th>
     </tr>
-        <?php foreach($_SESSION['user']->cart as $item): ?>
+        <?php foreach($_SESSION['user']->cart as $item):
+            if (isset($item['pizza'])):?>
         <tr>
             <th class="col-sm-2"><img class="img-thumbnail" src="<?= $item['pizza']->getImagep(); ?>"></th>
             <th class="col-sm-2"><h3><?= $item['pizza']->getTitlep(); ?></h3><br><?= $item['pizza']->getDescribep(); ?></th>
@@ -31,6 +38,16 @@ else
             <th class="col-sm-2"><?= $item['pizza']->getPricep() * $item['quantity']; ?> lei</th>
             <th class="col-sm-2"><a href="/remove-from-cart/<?= $item['pizza']->getIdp(); ?>" class="btn btn-primary glyphicon glyphicon-trash"> Șterge</a></th>
         </tr>
+            <?php else: ?>
+            <tr>
+            <th class="col-sm-2"><img class="img-thumbnail" src="<?= $item['sauce']->getImages(); ?>"></th>
+            <th class="col-sm-2"><h3><?= $item['sauce']->getNames(); ?></h3><br><?= $item['sauce']->getDescribes(); ?></th>
+            <th class="col-sm-2"><?= $item['sauce']->getPrices(); ?> lei</th>
+            <th class="col-sm-2"><?= $item['quantity']; ?></th>
+            <th class="col-sm-2"><?= $item['sauce']->getPrices() * $item['quantity']; ?> lei</th>
+            <th class="col-sm-2"><a href="/remove-from-cart/<?= $item['sauce']->getIds(); ?>" class="btn btn-primary glyphicon glyphicon-trash"> Șterge</a></th>
+            </tr>
+            <?php endif; ?>
         <?php endforeach; ?>
         <tr>
             <th></th><th></th><th></th><th></th>

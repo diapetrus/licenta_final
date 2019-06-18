@@ -20,8 +20,16 @@ class HistoryModel extends BasicModel
         $query = $this->dsql_connection->dsql();
         $currentdata = date("Y-m-d");
         $total = 0;
-        foreach($_SESSION['user']->cart as $item) {
-            $total += $item['pizza']->getPricep() * $item['quantity'];
+        if(isset($_SESSION['user']->cart)) {
+            foreach($_SESSION['user']->cart as $item) {
+                if (isset($item['pizza']))
+                    $total += $item['pizza']->getPricep() * $item['quantity'];
+                else{
+                    if(isset($item['sauce'])){
+                        $total += $item['sauce']->getPrices() * $item['quantity'];
+                    }
+                }
+            }
         }
         $idu = $_SESSION['user']->idu;
         $result =$query ->table('history')
@@ -35,11 +43,26 @@ class HistoryModel extends BasicModel
 
         foreach($_SESSION['user']->cart as $item) {
             $query = $this->dsql_connection->dsql();
+            if (isset($item['pizza']))
+            {
             $query->table('history_products')
                 ->set('idp', $item['pizza']->getIdp())
                 ->set('idh', $lastInsertedId)
+                ->set('ids',0)
                 ->set('quantity', $item['quantity'])
                 ->insert();
+            }
+            else{
+                if (isset($item['sauce']))
+                {
+                    $query->table('history_products')
+                        ->set('idp', 0)
+                        ->set('idh', $lastInsertedId)
+                        ->set('ids', $item['sauce']->getIds())
+                        ->set('quantity', $item['quantity'])
+                        ->insert();
+                }
+            }
         }
 
         $_SESSION['user']->cart = [];
