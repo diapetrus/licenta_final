@@ -78,7 +78,7 @@ class PizzaController extends BasicController
     {
         $pizzaModel = new PizzaModel();
         if (!empty($_POST)) {
-            $pizzaModel->addPizza($_POST);
+            $pizzaModel->addPizza($_POST, $_FILES['imagep']);
             redirect("/adminPage");
         } else {
             $this->content = $this->render('/views/pizza/add_pizza_page.php');

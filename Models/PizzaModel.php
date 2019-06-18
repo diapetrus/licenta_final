@@ -110,14 +110,22 @@ class PizzaModel extends BasicModel
         return $pizza;
     }
 
-    public function addPizza($params)
+    public function addPizza($params, $image)
     {
+        $target_dir = "uploads/";
+        $target_file = $target_dir . basename($image["name"]);
+        if (move_uploaded_file($image["tmp_name"], $target_file)) {
+            echo "The file ". basename( $image["name"]). " has been uploaded.";
+        } else {
+            echo "Sorry, there was an error uploading your file.";
+        }
+
         $query = $this->dsql_connection->dsql();
         $query->table('pizza')
             ->set('titlep', $params["titlep"])
             ->set('describep', $params["describep"])
             ->set('pricep', $params["pricep"])
-            ->set('imagep', $params["imagep"])
+            ->set('imagep', $target_file)
             ->set('type', $params["type"])
             ->set('size', $params["size"])
             ->insert();
