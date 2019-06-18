@@ -9,6 +9,7 @@
 namespace Controllers;
 
 use Models\PizzaModel;
+use Models\SauceModel;
 
 class PizzaController extends BasicController
 {
@@ -28,11 +29,17 @@ class PizzaController extends BasicController
 
     public function searchPageAction() {
         $pizzaModel = new PizzaModel();
+        $sauceModel = new SauceModel();
         $pizza = $pizzaModel->findByTitle($_GET['titlep']);
+        $sauce = $sauceModel->findSauceByTitle($_GET['titlep']);
         if ($_GET['q'] === '/search') {
             $this->title = "Cautare";
         }
-        $homePage = pizza_generate($pizza);
+        if($pizza){
+        $homePage = pizza_generate($pizza);}
+        else{
+            $homePage = sauce_generate($sauce);
+        }
         $recommendation = $pizzaModel->getRecommendation();
         $this->content = $this->render('/views/home/home_content.php', array("homePage" => $homePage));
         $sidebar = $this->render('/views/forms/home_search_form.php', array(
