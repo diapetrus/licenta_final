@@ -56,4 +56,10 @@ class HomeController extends BasicController
         $this->content = $this->render('views/home/contact.php',array());
         $this->get();
     }
+
+    public function aboutPageAction() {
+        $this->title = "Despre noi ";
+        $this->content = $this->render('views/home/about.php',array());
+        $this->get();
+    }
 }

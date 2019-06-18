@@ -54,7 +54,7 @@ class SauceController extends BasicController
     {
         $sauceModel = new SauceModel();
         if (!empty($_POST)) {
-            $sauceModel->addSauce($_POST);
+            $sauceModel->addSauce($_POST, $_FILES['images']);
             redirect("/adminPage");
         } else {
             $this->content = $this->render('/views/sauce/add_sauce_page.php');
@@ -66,7 +66,7 @@ class SauceController extends BasicController
     {
         $sauceModel = new SauceModel();
         if (!empty($_POST)) {
-            $sauceModel->updateSauce($ids, $_POST);
+            $sauceModel->updateSauce($ids, $_POST, $_FILES['images']);
             redirect("/adminPage");
         } else {
             $sauce = $sauceModel->getSauceById($ids);

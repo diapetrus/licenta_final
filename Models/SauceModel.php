@@ -81,24 +81,30 @@ class SauceModel extends BasicModel
         return $sauce;
     }
 
-    public function addSauce($params)
+    public function addSauce($params, $images)
     {
+        $target_dir = "images/";
+        $target_file = $target_dir . basename($images["name"]);
+        @move_uploaded_file($images["tmp_name"], $target_file);
         $query = $this->dsql_connection->dsql();
         $query->table('sauce')
             ->set('names', $params["names"])
             ->set('describes', $params["describes"])
-            ->set('images', $params["images"])
+            ->set('images', '/'.$target_file)
             ->set('prices', $params["prices"])
             ->insert();
     }
 
-    public function updateSauce($ids, $params)
+    public function updateSauce($ids, $params, $images)
     {
+        $target_dir = "images/";
+        $target_file = $target_dir . basename($images["name"]);
+        @move_uploaded_file($images["tmp_name"], $target_file);
         $query = $this->dsql_connection->dsql();
         $query->table('sauce')
             ->set('names', $params["names"])
             ->set('describes', $params["describes"])
-            ->set('images', $params["images"])
+            ->set('images', '/'.$target_file)
             ->set('prices', $params["prices"]);
         $query->where("ids", "=", $ids)->update();
     }

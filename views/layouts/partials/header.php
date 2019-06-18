@@ -8,11 +8,12 @@
         <ul class="nav navbar-nav">
             <li><a href="/"> Pizza</a></li>
             <li><a href="/sauce"> Sosuri</a></li>
+            <li><a href="/offer"> Oferte</a></li>
             <li><a href="/contact"> Contact</a></li>
             <li><a href="/about"> Despre noi</a></li>
-            <li><a href="/admin"> Administrator</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+            <li><a href="/admin"> Administrator</a></li>
             <li class="logged-out">
                 <a href="/login">
                     <span class="glyphicon glyphicon-log-in">

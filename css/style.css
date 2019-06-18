@@ -82,8 +82,8 @@ form {
     background-color: antiquewhite;
     padding: 0.5em;
     margin: 0.5em;
-    max-height: 400px;
-    height: 400px;
+    max-height: 500px;
+    height: 450px;
 }
 
 .img-thumbnail {
@@ -201,6 +201,15 @@ th{
 .contact {
     font-family: Comic Sans MS, sans-serif;
     font-size: 50px;
+    color: darkred;
+    font-style: oblique;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.about {
+    font-family: Comic Sans MS, sans-serif;
+    font-size: 30px;
     color: darkred;
     font-style: oblique;
     margin-bottom: 30px;

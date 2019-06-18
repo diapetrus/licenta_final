@@ -90,7 +90,7 @@ class PizzaController extends BasicController
     {
         $pizzaModel = new PizzaModel();
         if (!empty($_POST)) {
-            $pizzaModel->updatePizza($idp, $_POST);
+            $pizzaModel->updatePizza($idp, $_POST, $_FILES['imagep']);
             redirect("/adminPage");
         } else {
             $pizza = $pizzaModel->getPizzaById($idp);

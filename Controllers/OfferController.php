@@ -11,17 +11,29 @@ namespace Controllers;
 
 use Models\PizzaModel;
 
-class OfertaController extends BasicController
+class OfferController extends BasicController
 {
     public $pizzaModel;
 
     public $oferte = [
         0 => [
-            'pizza' => [1, 2, 3],
-            'free' => 5
+            'pizza' => [10, 12],
+            'free' => 11
         ],
         1 => [
-            'pizza' => [2, 4, 5],
+            'pizza' => [19, 13],
+            'free' => 7
+        ],
+        2 => [
+            'pizza' => [4, 5, 6],
+            'free' => 35
+        ],
+        3 => [
+            'pizza' => [35, 34],
+            'free' => 7
+        ],
+        4 => [
+            'pizza' => [35, 19],
             'free' => 1
         ]
     ];
@@ -29,7 +41,7 @@ class OfertaController extends BasicController
     public function __construct()
     {
         parent::__construct();
-        $this->title = "Oferta";
+        $this->title = "Oferte";
         $this->pizzaModel = new PizzaModel();
     }
 
@@ -44,17 +56,14 @@ class OfertaController extends BasicController
             $data[] = ['id' => $key, 'pizza' => $pizzas, 'free' => $free];
         }
 
-        $this->addToCartAction();
+        $this->content = $this->render('/views/offer/offer_box.php', array('data' => $data));
+
+        $this->renderLayout('/views/layouts/basic.php', array('content' => $this->content));
+        //$this->addToCartAction();
     }
 
     public function addToCartAction() {
-
-        $_GET['oferta'] = 0;
-        if(!isset($_GET['oferta']))
-            return;
-
-        $ofertaId = $_GET['oferta'];
-        $_SESSION['user']->cart = [];
+        $ofertaId = $_POST['oferta_id'];
 
         foreach($this->oferte[$ofertaId]['pizza'] as $pizzaId) {
             $pizza = $this->pizzaModel->getPizzaById($pizzaId);
@@ -70,6 +79,6 @@ class OfertaController extends BasicController
             'pizza' => $free,
             'quantity' => 1
         ];
-
+        redirect('/');
     }
 }
