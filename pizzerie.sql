@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 17, 2019 at 05:45 PM
+-- Generation Time: Jun 18, 2019 at 02:34 PM
 -- Server version: 10.1.38-MariaDB
 -- PHP Version: 7.2.15
 
@@ -48,7 +48,10 @@ INSERT INTO `history` (`idh`, `idu`, `totalprice`, `date`) VALUES
 (59, 3, 269.1, '2019-06-06'),
 (60, 3, 3049.8, '2019-06-06'),
 (61, 3, 289.2, '2019-06-06'),
-(62, 3, 104.7, '2019-06-09');
+(62, 3, 104.7, '2019-06-09'),
+(63, 1, 23.9, '2019-06-18'),
+(64, 1, 32.9, '2019-06-18'),
+(65, 1, 3, '2019-06-18');
 
 -- --------------------------------------------------------
 
@@ -60,6 +63,7 @@ CREATE TABLE `history_products` (
   `id` int(11) NOT NULL,
   `idp` int(11) NOT NULL,
   `idh` int(11) NOT NULL,
+  `ids` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -67,16 +71,21 @@ CREATE TABLE `history_products` (
 -- Dumping data for table `history_products`
 --
 
-INSERT INTO `history_products` (`id`, `idp`, `idh`, `quantity`) VALUES
-(1, 1, 58, 1),
-(2, 1, 58, 100),
-(3, 3, 58, 1),
-(4, 4, 58, 4),
-(5, 7, 59, 9),
-(6, 7, 60, 102),
-(7, 3, 61, 3),
-(8, 4, 61, 5),
-(9, 3, 62, 3);
+INSERT INTO `history_products` (`id`, `idp`, `idh`, `ids`, `quantity`) VALUES
+(1, 1, 58, 0, 1),
+(2, 1, 58, 0, 100),
+(3, 3, 58, 0, 1),
+(4, 4, 58, 0, 4),
+(5, 7, 59, 0, 9),
+(6, 7, 60, 0, 102),
+(7, 3, 61, 0, 3),
+(8, 4, 61, 0, 5),
+(9, 3, 62, 0, 3),
+(10, 1, 63, 0, 1),
+(11, 0, 63, 2, 1),
+(12, 2, 64, 0, 1),
+(13, 0, 64, 1, 1),
+(14, 0, 65, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -99,7 +108,7 @@ CREATE TABLE `pizza` (
 --
 
 INSERT INTO `pizza` (`idp`, `titlep`, `describep`, `imagep`, `pricep`, `type`, `size`) VALUES
-(1, 'Margherita', 'Sos de rosii, mozzarella', '/images/margerita.jpg', 19.9, 'Fara Carne', 'Mica'),
+(1, 'Margherita', 'Sos de rosii, mozzarella', '/images/margerita.jpg', 20.9, 'Fara Carne', 'Mica'),
 (2, 'Prosciutto cotto', 'Sos de rosii, sunca, mozzarella', '/images/proscitto cotto.jpg', 29.9, 'Cu Carne', 'Medie'),
 (3, 'Prosciutto funghi', 'Sos de rosii, sunca, ciuperci, mozzarella', '/images/prosciutto funghi.jpeg', 34.9, 'Cu Carne', 'Medie'),
 (4, 'Cannibale', 'Sos de rosii, salam, sunca, cremvursti, cabanos, mozzarella', '/images/Canibale.png', 36.9, 'Cu Carne', 'Mare'),
@@ -227,13 +236,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `history`
 --
 ALTER TABLE `history`
-  MODIFY `idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+  MODIFY `idh` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66;
 
 --
 -- AUTO_INCREMENT for table `history_products`
 --
 ALTER TABLE `history_products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pizza`
