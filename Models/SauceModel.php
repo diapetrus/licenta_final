@@ -20,7 +20,8 @@ class SauceModel extends BasicModel
     public function getSauce()
     {
         $query = $this->dsql_connection->dsql();
-        $result = $query->table('sauce')->get();
+        $result = $query->table('sauce')
+            ->get();
         $sauce = NULL;
         if ($result) {
             foreach ($result as $res) {

@@ -26,7 +26,7 @@ class HomeController extends BasicController
     {
         $pizza = $this->pizzaModel->getPizza();
         if ($_GET['q'] === '/search') {
-            $this->title = "Cauta";
+            $this->title = "Cautare";
             redirect('/search');
         }
 
@@ -49,5 +49,11 @@ class HomeController extends BasicController
             'recommendation' => $recommendation
         ));
         $this->renderLayout('/views/layouts/sidebar_page.php', array('sidebar' => $sidebar));
+    }
+
+    public function contactPageAction(){
+        $this->title = "Contact ";
+        $this->content = $this->render('views/home/contact.php',array());
+        $this->get();
     }
 }

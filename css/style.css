@@ -197,3 +197,12 @@ th{
     font-family: Comic Sans MS, sans-serif;
     color: red;
 }
+
+.contact {
+    font-family: Comic Sans MS, sans-serif;
+    font-size: 50px;
+    color: darkred;
+    font-style: oblique;
+    margin-bottom: 30px;
+    text-align: center;
+}

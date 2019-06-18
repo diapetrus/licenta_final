@@ -98,14 +98,14 @@ function pizza_generate($pizzas)
 
 function sauce_generate($sauces)
 {
-    $homePage = '';
+    $hPage = '';
     if ($sauces != NULL) {
         foreach ($sauces as $sauce) {
-            $homePage .= pizza_render_template('/views/sauce/sauce_box.php', array('sauce' => $sauce));
+            $hPage .= pizza_render_template('/views/sauce/sauce_box.php', array('sauce' => $sauce));
         }
     } else
-        $homePage .= "NOT FOUND!!!";
-    return $homePage;
+        $hPage .= "NOT FOUND!!!";
+    return $hPage;
 }
 
 function pizza_admin_generate($pizzas)
@@ -123,7 +123,6 @@ function sauce_admin_generate($sauces)
 {
     $homePage = '';
     if ($sauces != NULL) {
-        print_r($sauces);die;
         foreach ($sauces as $sauce) {
             $homePage .= pizza_render_template('/views/sauce/sauce_table.php', array('sauce' => $sauce));
         }

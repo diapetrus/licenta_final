@@ -25,7 +25,11 @@ class SauceController extends BasicController
         $sauce = $sauceModel->getSauce();
         $homePage = sauce_generate($sauce);
         $this->content = $this->render('/views/home/home_content.php', array('homePage' => $homePage));
-        $this->get();
+        $sidebar = $this->render('/views/forms/home_search_form.php', array(
+            'searchFields' => $_GET,
+            'messages' => render_messages(get_messages()),
+        ));
+        $this->renderLayout('/views/layouts/sidebar_page.php', array('sidebar' => $sidebar));
     }
 
     public function saucePageAction($id)

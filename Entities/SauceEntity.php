@@ -14,6 +14,7 @@ class SauceEntity
     private $ids;
     private $names;
     private $describes;
+    private $images;
     private $prices;
 
     public function __construct($param)
@@ -74,6 +75,22 @@ class SauceEntity
     /**
      * @return mixed
      */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param mixed $images
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
+    }
+
+    /**
+     * @return mixed
+     */
     public function getPrices()
     {
         return $this->prices;
@@ -86,4 +103,5 @@ class SauceEntity
     {
         $this->prices = $prices;
     }
+
 }

@@ -7,7 +7,15 @@ function pizza_routes_definitions()
             'GET' => 'Controllers\HomeController::homePageAction',
         ),
         '/' => 'Controllers\HomeController::homePageAction',
-        '/sauce' => 'Controllers\SauceController::homeSaucePageAction',
+        '/sauce' => array(
+            'GET' => 'Controllers\SauceController::homeSaucePageAction',
+        ),
+        '/contact' => array(
+            'GET' => 'Controllers\HomeController::contactPageAction',
+        ),
+        '/about' => array(
+            'GET' => 'Controllers\HomeController::aboutPageAction',
+        ),
         '/register' => array(
             'GET' => 'Controllers\UserAuthenticationController::registerPageAction',
             'POST' => 'Controllers\UserAuthenticationController::registerPost',
