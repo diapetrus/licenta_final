@@ -31,6 +31,10 @@ class HistoryModel extends BasicModel
                 }
             }
         }
+
+        if(isset($_GET['reducere']) && $_GET['reducere'] > 0)
+            $total = $total - round($_SESSION['user']->getPoints(), 2 );
+
         $idu = $_SESSION['user']->idu;
         $result =$query ->table('history')
             ->set('idu', $idu)
@@ -64,6 +68,24 @@ class HistoryModel extends BasicModel
                 }
             }
         }
+
+
+        if(isset($_GET['reducere']) && $_GET['reducere'] > 0) {
+            $totalPoints = 0;
+        } else {
+            $points = round(($total * 3) / 100, 2);
+
+            $totalPoints = ( round($_SESSION['user']->getPoints(), 2 ) + $points);
+        }
+        // Update user points, 3% of total.
+        $query = $this->dsql_connection->dsql();
+
+        $result =$query->table('users')
+            ->where('idu', $_SESSION['user']->getIdu())
+            ->set('points', $totalPoints)
+            ->update();
+
+        $_SESSION['user']->setPoints($totalPoints);
 
         $_SESSION['user']->cart = [];
     }

@@ -44,7 +44,8 @@ class UserModel extends BasicModel
             ->getRow();
         return new UserEntity(array(
             'idu' => $result['idu'],
-            'email' => $result['email']
+            'email' => $result['email'],
+            'points' => $result['points']
         ));
     }
 

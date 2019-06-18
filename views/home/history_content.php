@@ -9,16 +9,16 @@
     </thead>
     <tbody>
         <?php if(isset($history) && count($history) > 0) :?>
-            <?php foreach($history as $item) : print_r($item);?>
+            <?php foreach($history as $item) : ?>
                 <tr>
                     <td><?=$item[0]['email']?></td>
                     <td><?=$item[0]['totalprice']?></td>
                     <td><?php foreach ($item as $i) : ?><p><?=$i['quantity']?></p>
                     <?php endforeach;?>
                     <td>
-                        <?php foreach($item as $pizza) : print_r($pizza);?>
-                        <p><?= $pizza['names']?><b><?=$pizza['prices']?></b></p>
-                        <p><?=$pizza['titlep']?> <b><?=$pizza['pricep']?></b></p>
+                        <?php foreach($item as $pizza) :?>
+                        <p><?= @$pizza['names']?> <b><?= @$pizza['prices']?></b></p>
+                        <p><?= @$pizza['titlep']?> <b><?= @$pizza['pricep']?></b></p>
                         <?php endforeach;?>
                     </td>
                 </tr>

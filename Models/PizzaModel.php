@@ -156,14 +156,17 @@ class PizzaModel extends BasicModel
         try {
             $result = $query
                 ->field('p.*')
+                ->field('s.*')
                 ->field('h.totalprice, h.idh')
                 ->field('u.email')
                 ->field('hp.quantity')
                 ->table('history', 'h')
                 ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
-                ->join('pizza p', new Expression("p.idp=hp.idp"), "inner")
-                ->join('users u', new Expression("u.idu=h.idu"), "inner")
+                ->join('pizza p', new Expression("p.idp=hp.idp"), "left")
+                ->join('users u', new Expression("u.idu=h.idu"), "left")
+                ->join('sauce s', new Expression("s.ids=hp.ids"), "left")
                 ->get();
+
         }catch(Exception $e) {
             print_r($e);
         }

@@ -55,14 +55,41 @@ else
             <th class="total-price col-sm-2"><?= $transport ?> lei</th>
         </tr>
         <tr>
-            <th></th><th></th><th></th><th></th>
+            <th></th><th></th><th></th>
+            <th>
+                <?php if($_SESSION['user']->getPoints() > 0) : ?>
+                    <input type="checkbox" name="reducere" /> Aplica reducerea de <?=$_SESSION['user']->getPoints()?>
+                <?php endif;?>
+            </th>
             <th class="total-price col-sm-2">Total coș: </th>
-            <th class="total-price col-sm-2"><?= $total + $transport; ?> lei</th>
+            <th class="total-price col-sm-2" id="total"><?= $total + $transport; ?> lei</th>
         </tr>
 
     </tbody>
 </table>
-<a href="/history" class="total-price dist btn btn-primary">Finalizează comanda</a>
+<a class="total-price dist btn btn-primary">Finalizează comanda</a>
 <?php else:  ?>
 <div>Coșul dumneavoastră este gol</div>
 <?php endif; ?>
+<script>
+    const total = parseFloat('<?php echo $total + $transport; ?>', 2);
+    const points = parseFloat('<?=$_SESSION['user']->getPoints()?>', 2);
+    $(document).ready(function () {
+        $('.total-price').on('click', function () {
+            const reducere = $('[name="reducere"]').is(":checked");
+            if(reducere)
+                window.location.href='/history?reducere=1';
+            else
+                window.location.href='/history';
+        });
+
+        $('[name="reducere"]').change(function() {
+            if($(this).is(":checked")) {
+                $("#total").html(parseFloat(total - points).toFixed(2));
+            }else {
+                $("#total").html(total);
+            }
+        });
+
+    })
+</script>
