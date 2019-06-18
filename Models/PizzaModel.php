@@ -65,6 +65,27 @@ class PizzaModel extends BasicModel
         return $pizza;
     }
 
+    public function getPizzaByIds($ids) {
+        $query = $this->dsql_connection->dsql();
+        $data = $query->table('pizza')->where('idp', 'in', $ids)->get();
+
+        $pizza = [];
+        if ($data) {
+            foreach($data as $result) {
+                $pizza[] = new PizzaEntity(array(
+                        "idp" => $result['idp'],
+                        "titlep" => $result['titlep'],
+                        "describep" => $result['describep'],
+                        "imagep" => $result['imagep'],
+                        "pricep" => $result['pricep'],
+                        "size" => $result['size']
+                    )
+                );
+            }
+        }
+        return $pizza;
+    }
+
     public function findByTitle($titlep)
     {
         $query = $this->dsql_connection->dsql();
@@ -161,7 +182,7 @@ class PizzaModel extends BasicModel
                 ->field('u.email')
                 ->field('hp.quantity')
                 ->table('history', 'h')
-                ->join('history_products hp', new Expression("h.idh=hp.idh"), "inner")
+                ->join('history_products hp', new Expression("h.idh=hp.idh"), "left")
                 ->join('pizza p', new Expression("p.idp=hp.idp"), "left")
                 ->join('users u', new Expression("u.idu=h.idu"), "left")
                 ->join('sauce s', new Expression("s.ids=hp.ids"), "left")

@@ -34,6 +34,10 @@ function pizza_routes_definitions()
         '/filter' => array(
             'GET' => 'Controllers\HomeController::filterAction',
         ),
+        '/oferte' => array(
+            'GET' => 'Controllers\OfertaController::showAction',
+            'POST' => 'Controllers\OfertaController::addToCartAction',
+        ),
         '/pizza/{$id:([0-9]+)}' => 'Controllers\PizzaController::pizzaPageAction',
         '/sauce/{$id:([0-9]+)}' => 'Controllers\SauceController::saucePageAction',
         '/search' => array(
