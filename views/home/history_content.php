@@ -2,8 +2,10 @@
     <thead>
     <tr>
         <th class="col-sm-2">Utilizator</th>
-        <th class="col-sm-2">Pretul total</th>
-        <th class="col-sm-2">Cantitate</th>
+        <th class="col-sm-2">Adresa de livrare</th>
+        <th class="col-sm-2">Data comenzii</th>
+        <th class="col-sm-2">Prețul total</th>
+        <th class="col-sm-2">Cantități</th>
         <th class="col-sm-2">Produse</th>
     </tr>
     </thead>
@@ -12,6 +14,8 @@
             <?php foreach($history as $item) : ?>
                 <tr>
                     <td><?=$item[0]['email']?></td>
+                    <td><?=$item[0]['address']?></td>
+                    <td><?=$item[0]['date']?></td>
                     <td><?=$item[0]['totalprice']?></td>
                     <td><?php foreach ($item as $i) : ?><p><?=$i['quantity']?></p>
                     <?php endforeach;?>

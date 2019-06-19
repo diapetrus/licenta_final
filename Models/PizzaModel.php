@@ -185,6 +185,8 @@ class PizzaModel extends BasicModel
             $result = $query
                 ->field('p.*')
                 ->field('s.*')
+                ->field('u.address')
+                ->field('h.date')
                 ->field('h.totalprice, h.idh')
                 ->field('u.email')
                 ->field('hp.quantity')
