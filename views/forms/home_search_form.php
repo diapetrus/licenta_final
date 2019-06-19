@@ -1,9 +1,9 @@
 <form action="/search" method="GET">
     <div class="form-group">
-        <label for="titlep">Cauta</label>
+        <label for="titlep">Caută</label>
         <input type="text" class="form-control" id="titlep" name="titlep" placeholder="cauta">
     </div>
-    <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span>Cauta
+    <button type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-search"></span>Caută
     </button>
     <div class="messages"><?php echo $messages; ?></div>
 </form>

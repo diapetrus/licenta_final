@@ -10,18 +10,18 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="password">Parola:</label>
+            <label class="control-label col-sm-4" for="password">Parolă:</label>
             <div class="col-sm-5">
                 <input type='password' class="form-control " name="password" id="password" placeholder="password"/>
             </div>
         </div>
         <div class="from-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button type="submit" class="btn btn-default">Conecteaza-te</button>
+                <button type="submit" class="btn btn-default">Conectează-te</button>
             </div>
         </div>
         <div class="from-group">
-            <label class="col-sm-offset-4 col-sm-10">Nu aveti un cont? <a href="/register">Inregistrare</a></label>
+            <label class="col-sm-offset-4 col-sm-10">Nu aveti un cont? <a href="/register">Înregistrare</a></label>
         </div>
     </form>
 </div>

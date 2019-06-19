@@ -32,7 +32,7 @@ class HistoryModel extends BasicModel
             }
         }
 
-        if(isset($_GET['reducere']) && $_GET['reducere'] > 0)
+        if(isset($_GET['sale']) && $_GET['sale'] > 0)
             $total = $total - round($_SESSION['user']->getPoints(), 2 );
 
         $idu = $_SESSION['user']->idu;
@@ -70,7 +70,7 @@ class HistoryModel extends BasicModel
         }
 
 
-        if(isset($_GET['reducere']) && $_GET['reducere'] > 0) {
+        if(isset($_GET['sale']) && $_GET['sale'] > 0) {
             $totalPoints = 0;
         } else {
             $points = round(($total * 3) / 100, 2);

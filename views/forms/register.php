@@ -10,36 +10,36 @@
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="password">Parola:</label>
+            <label class="control-label col-sm-4" for="password">Parolă:</label>
             <div class="col-sm-5">
                 <input type='password' class="form-control" name="password" id="password" placeholder="********"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="confirm-password">Confirmare parola:</label>
+            <label class="control-label col-sm-4" for="confirm-password">Confirmare parolă:</label>
             <div class="col-sm-5">
                 <input type='password' class="form-control" name="confirm-password" id="confirm-password" placeholder="********"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Adresa de livrare:</label>
+            <label class="control-label col-sm-4" for="email">Adresă de livrare:</label>
             <div class="col-sm-5">
                 <input type='text' class="form-control" name="address" id="address" placeholder="adresa"/>
             </div>
         </div>
         <div class="form-group">
-            <label class="control-label col-sm-4" for="email">Numar de telefon:</label>
+            <label class="control-label col-sm-4" for="email">Număr de telefon:</label>
             <div class="col-sm-5">
                 <input type='text' class="form-control" name="phone" id="phone" placeholder="07xxxxxxxx"/>
             </div>
         </div>
         <div class="from-group">
             <div class="col-sm-offset-4 col-sm-4">
-                <button type="submit" class="btn btn-default">Register</button>
+                <button type="submit" class="btn btn-default">Înregistrează-te</button>
             </div>
         </div>
         <div class="from-group">
-            <label class="col-sm-offset-4 col-sm-10">Already have an account? <a href="/login">Log in</a></label>
+            <label class="col-sm-offset-4 col-sm-10">Ai deja un cont? <a href="/login">Contectează-te</a></label>
         </div>
     </form>
 </div>

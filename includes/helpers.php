@@ -92,7 +92,7 @@ function pizza_generate($pizzas)
             $homePage .= pizza_render_template('/views/pizza/pizza_box.php', array('pizza' => $pizza));
         }
     } else
-        $homePage .= "NOT FOUND!!!";
+        $homePage .= "Nu a fost găsit nici un rezultat!!!";
     return $homePage;
 }
 
@@ -104,7 +104,7 @@ function sauce_generate($sauces)
             $hPage .= pizza_render_template('/views/sauce/sauce_box.php', array('sauce' => $sauce));
         }
     } else
-        $hPage .= "NOT FOUND!!!";
+        $hPage .= "Nu a fost găsit nici un rezultat!!!";
     return $hPage;
 }
 

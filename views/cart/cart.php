@@ -58,7 +58,7 @@ else
             <th></th><th></th><th></th>
             <th>
                 <?php if($_SESSION['user']->getPoints() > 0) : ?>
-                    <input type="checkbox" name="reducere" /> Aplica reducerea de <?=$_SESSION['user']->getPoints()?>
+                    <input type="checkbox" name="sale" /> Aplică reducerea de <?=$_SESSION['user']->getPoints()?>
                 <?php endif;?>
             </th>
             <th class="total-price col-sm-2">Total coș: </th>
@@ -76,14 +76,14 @@ else
     const points = parseFloat('<?=$_SESSION['user']->getPoints()?>', 2);
     $(document).ready(function () {
         $('.total-price').on('click', function () {
-            const reducere = $('[name="reducere"]').is(":checked");
-            if(reducere)
-                window.location.href='/history?reducere=1';
+            const sale = $('[name="sale"]').is(":checked");
+            if(sale)
+                window.location.href='/history?sale=1';
             else
                 window.location.href='/history';
         });
 
-        $('[name="reducere"]').change(function() {
+        $('[name="sale"]').change(function() {
             if($(this).is(":checked")) {
                 $("#total").html(parseFloat(total - points).toFixed(2));
             }else {

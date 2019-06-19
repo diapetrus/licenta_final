@@ -62,7 +62,7 @@ class UserModel extends BasicModel
     {
         $messages = array();
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $messages[] = 'Adresa de e-mail nu este valida';
+            $messages[] = 'Adresa de e-mail nu este validă';
         }
         if (strlen($password) < 8) {
             $messages[] = 'Parola trebuie sa aiba minim 8 caractere';
@@ -72,7 +72,7 @@ class UserModel extends BasicModel
         }
 
         if (!$this->isEmailUnique($email)) {
-            $messages[] = 'Adresa de e-mail deja utilizata';
+            $messages[] = 'Adresa de e-mail deja utilizată';
         }
 
         if (strlen($phone) != 10)
@@ -91,7 +91,7 @@ class UserModel extends BasicModel
             ->get();
         $messages = array();
         if (sizeof($result) !== 1) {
-            $messages[] = 'Parola sau e-mail invalide';
+            $messages[] = 'Parolă sau e-mail invalide';
         }
         set_error_messages($messages);
         return empty($messages);

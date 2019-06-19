@@ -1,5 +1,5 @@
-<div >
-<a href="/adminPage/pizza" class="col-sm-4 btn btn-primary"> Pizza</a>
-<a href="/adminPage/sauce" class="col-sm-4 btn btn-primary"> Sosuri</a>
-<a href="/adminPage/history" class="col-sm-4 btn btn-primary h-btn ">Istoric comenzi</a>
+<div class="text-center">
+    <div><a href="/adminPage/pizza" class="btn btn-primary dist"> Pizza</a></div>
+    <div><a href="/adminPage/sauce" class="btn btn-primary dist"> Sosuri</a></div>
+    <div><a href="/adminPage/history" class="btn btn-primary dist">Istoric comenzi</a></div>
 </div>

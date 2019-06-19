@@ -17,7 +17,7 @@ class OfferController extends BasicController
 
     public $oferte = [
         0 => [
-            'pizza' => [10, 12],
+            'pizza' => [10,12],
             'free' => 11
         ],
         1 => [
@@ -35,6 +35,10 @@ class OfferController extends BasicController
         4 => [
             'pizza' => [35, 19],
             'free' => 1
+        ],
+        5 => [
+            'pizza' => [30, 22],
+            'free' => 8
         ]
     ];
 
@@ -59,7 +63,6 @@ class OfferController extends BasicController
         $this->content = $this->render('/views/offer/offer_box.php', array('data' => $data));
 
         $this->renderLayout('/views/layouts/basic.php', array('content' => $this->content));
-        //$this->addToCartAction();
     }
 
     public function addToCartAction() {
