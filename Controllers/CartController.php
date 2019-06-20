@@ -27,9 +27,8 @@ class CartController extends BasicController
                     'pizza' => $pizza,
                     'quantity' => $_POST['quantity']
                 ];
-            }
-            else {
-                if ($sauce){
+            } else {
+                if ($sauce) {
                     $_SESSION['user']->cart[] = [
                         'sauce' => $sauce,
                         'quantity' => $_POST['quantity']];
@@ -43,15 +42,23 @@ class CartController extends BasicController
 
     public function removeFromCart($idp)
     {
-
         foreach ($_SESSION['user']->cart as $key => $item) {
-            if ($item['pizza']->getIdp() === $idp) {
-                unset($_SESSION['user']->cart[$key]);
-            }
-            else
-                if ($item['sauce']->getIds() === $idp){
+            if (isset($item['pizza'])) {
+                if ($item['pizza']->getIdp() === $idp) {
                     unset($_SESSION['user']->cart[$key]);
                 }
+            } else
+                if (isset($item['sauce'])) {
+                    if ($item['sauce']->getIds() === $idp) {
+                        unset($_SESSION['user']->cart[$key]);
+                    }
+                }
+                else
+                    if(isset($item['pizzaof'])){
+                        if ($item['idof'] === $idp) {
+                            unset($_SESSION['user']->cart[$key]);
+                        }
+                    }
         }
         redirect('/cart');
     }
@@ -66,16 +73,8 @@ class CartController extends BasicController
     public function showCart()
     {
         $this->title = "Cosul meu";
-        //$this->checkPromotions();
         $this->content = $this->render('/views/cart/cart.php');
         $this->get();
     }
 
-
-    /*
-    public function checkPromotions() {
-        if($this->pizzamediapro())
-            $promotie = $this->
-    }
-    */
 }

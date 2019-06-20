@@ -66,22 +66,26 @@ class OfferController extends BasicController
     }
 
     public function addToCartAction() {
-        $ofertaId = $_POST['oferta_id'];
+        if(isset($_SESSION['user'])) {
+            $ofertaId = $_POST['oferta_id'];
+            foreach ($this->oferte[$ofertaId]['pizza'] as $pizzaId) {
+                $pizza = $this->pizzaModel->getPizzaById($pizzaId);
+                $_SESSION['user']->cart[] = [
+                    'idof' => $_POST['oferta_id'],
+                    'pizzaof' => $pizza,
+                    'quantity' => 1
+                ];
+            }
 
-        foreach($this->oferte[$ofertaId]['pizza'] as $pizzaId) {
-            $pizza = $this->pizzaModel->getPizzaById($pizzaId);
+            $free = $this->pizzaModel->getPizzaById($this->oferte[$ofertaId]['free']);
+            $free->setPricep(0);
             $_SESSION['user']->cart[] = [
-                'pizza' => $pizza,
+                'pizzaof' => $free,
                 'quantity' => 1
             ];
+            redirect('/');
         }
-
-        $free = $this->pizzaModel->getPizzaById($this->oferte[$ofertaId]['free']);
-        $free->setPricep(0);
-        $_SESSION['user']->cart[] = [
-            'pizza' => $free,
-            'quantity' => 1
-        ];
-        redirect('/');
+        else
+            redirect('/login');
     }
 }
