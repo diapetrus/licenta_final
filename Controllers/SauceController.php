@@ -76,20 +76,20 @@ class SauceController extends BasicController
         }
     }
 
-    public function deletePizzaPage($idp)
+    public function deleteSaucePage($ids)
     {
         $sauceModel = new SauceModel();
         if (!empty($_POST)) {
             if ($_POST['confirm']=='Da')
             {
-                $sauceModel->deleteSauce($idp);
+                $sauceModel->deleteSauce($ids);
                 redirect("/adminPage");
             }
             else
-                redirect("/adminPage");
+                redirect("/adminPage/sauce");
         }
         else {
-            $sauce = $sauceModel->getSauceById($idp);
+            $sauce = $sauceModel->getSauceById($ids);
             $this->title = $sauce->getNames();
             $this->content = $this->render('/views/sauce/delete_sauce_page.php', array('sauce' => $sauce));
             $this->renderLayout('/views/layouts/basic.php');

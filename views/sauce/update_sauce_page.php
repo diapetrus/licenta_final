@@ -6,7 +6,7 @@
         <label for="prices">Pret</label>
         <input  value="<?php echo $sauce->getPrices() ?>" type="text" class="form-control" id="prices" name="prices"/>
         <label for="images">Imagine</label>
-        <input value="<?php echo $sauce->getImages() ?>" type="text" class="form-control" id="images" name="images"/>
+        <input type="file" name="images"><br/>
     </div>
     <button id="edit-submit" type="submit" class="btn btn-info btn-lg">Modifica</button>
     <a href="/adminPage" class="btn btn-info btn-lg">Anuleaza</a>
