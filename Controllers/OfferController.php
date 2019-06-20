@@ -67,10 +67,14 @@ class OfferController extends BasicController
 
     public function addToCartAction() {
         if(isset($_SESSION['user'])) {
+            if(!isset($_SESSION['user']->cart['offer'])) {
+                $_SESSION['user']->cart['offer'] = [];
+            }
             $ofertaId = $_POST['oferta_id'];
+            $data = [];
             foreach ($this->oferte[$ofertaId]['pizza'] as $pizzaId) {
                 $pizza = $this->pizzaModel->getPizzaById($pizzaId);
-                $_SESSION['user']->cart[] = [
+                $data[] = [
                     'idof' => $_POST['oferta_id'],
                     'pizzaof' => $pizza,
                     'quantity' => 1
@@ -79,10 +83,12 @@ class OfferController extends BasicController
 
             $free = $this->pizzaModel->getPizzaById($this->oferte[$ofertaId]['free']);
             $free->setPricep(0);
-            $_SESSION['user']->cart[] = [
+            $data[] = [
                 'pizzaof' => $free,
                 'quantity' => 1
             ];
+            $_SESSION['user']->cart['offer'][] = $data;
+
             redirect('/');
         }
         else

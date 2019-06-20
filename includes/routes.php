@@ -48,6 +48,7 @@ function pizza_routes_definitions()
         ),
         '/cart' => 'Controllers\CartController::showCart',
         '/remove-from-cart/{$id:([0-9]+)}' => 'Controllers\CartController::removeFromCart',
+        '/remove-offer-from-cart/{$id:([0-9]+)}' => 'Controllers\CartController::removeOfferFromCart',
         '/adminPage' => 'Controllers\PizzaController::adminPageAction',
         '/adminPage/pizza' => 'Controllers\PizzaController::adminPizzaAction',
         '/adminPage/sauce' => 'Controllers\SauceController::adminSauceAction',

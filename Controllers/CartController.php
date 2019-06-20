@@ -63,6 +63,11 @@ class CartController extends BasicController
         redirect('/cart');
     }
 
+    public function removeOfferFromCart($offerKey) {
+        unset($_SESSION['user']->cart['offer'][$offerKey]);
+        redirect('/cart');
+    }
+
     public function history()
     {
         $historyModel = new HistoryModel();
