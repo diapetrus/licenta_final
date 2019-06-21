@@ -16,49 +16,67 @@ class HistoryModel extends BasicModel
         parent::__construct();
     }
 
-    public function saveToHistory(){
+    public function saveToHistory()
+    {
         $query = $this->dsql_connection->dsql();
         $currentdata = date("Y-m-d");
         $total = 0;
-        if(isset($_SESSION['user']->cart)) {
-            foreach($_SESSION['user']->cart as $item) {
+        if (isset($_SESSION['user']->cart['offer'])) {
+            foreach ($_SESSION['user']->cart['offer'] as $key => $oferta) {
+                foreach ($oferta as $pizza) {
+                    $total += $pizza['pizzaof']->getPricep() * $pizza['quantity'];
+                }
+            }
+        }
+        if (isset($_SESSION['user']->cart)) {
+            foreach ($_SESSION['user']->cart as $item) {
                 if (isset($item['pizza']))
                     $total += $item['pizza']->getPricep() * $item['quantity'];
-                else{
-                    if(isset($item['sauce'])){
+                else {
+                    if (isset($item['sauce'])) {
                         $total += $item['sauce']->getPrices() * $item['quantity'];
                     }
                 }
             }
         }
 
-        if(isset($_GET['sale']) && $_GET['sale'] > 0)
-            $total = $total - round($_SESSION['user']->getPoints(), 2 );
+        if (isset($_GET['sale']) && $_GET['sale'] > 0)
+            $total = $total - round($_SESSION['user']->getPoints(), 2);
 
         $idu = $_SESSION['user']->idu;
-        $result =$query ->table('history')
+        $result = $query->table('history')
             ->set('idu', $idu)
-            ->set('totalprice',$total)
+            ->set('totalprice', $total)
             ->set('date', $currentdata)
             ->insert();
         $query = $this->dsql_connection->dsql();
         $h = $query->table('history')->get();
         $lastInsertedId = end($h)['idh'];
-
-        foreach($_SESSION['user']->cart as $item) {
-            $query = $this->dsql_connection->dsql();
-            if (isset($item['pizza']))
-            {
-            $query->table('history_products')
-                ->set('idp', $item['pizza']->getIdp())
-                ->set('idh', $lastInsertedId)
-                ->set('ids',0)
-                ->set('quantity', $item['quantity'])
-                ->insert();
+        if (isset($_SESSION['user']->cart['offer'])) {
+            foreach ($_SESSION['user']->cart['offer'] as $key => $oferta) {
+                foreach ($oferta as $pizza) {
+                    $query = $this->dsql_connection->dsql();
+                    $query->table('history_products')
+                        ->set('idp', $pizza['pizzaof']->getIdp())
+                        ->set('idh', $lastInsertedId)
+                        ->set('ids', 0)
+                        ->set('quantity', $pizza['quantity'])
+                        ->insert();
+                }
             }
-            else{
-                if (isset($item['sauce']))
-                {
+        }
+        foreach ($_SESSION['user']->cart as $item) {
+            $query = $this->dsql_connection->dsql();
+
+            if (isset($item['pizza'])) {
+                $query->table('history_products')
+                    ->set('idp', $item['pizza']->getIdp())
+                    ->set('idh', $lastInsertedId)
+                    ->set('ids', 0)
+                    ->set('quantity', $item['quantity'])
+                    ->insert();
+            } else {
+                if (isset($item['sauce'])) {
                     $query->table('history_products')
                         ->set('idp', 0)
                         ->set('idh', $lastInsertedId)
@@ -70,17 +88,17 @@ class HistoryModel extends BasicModel
         }
 
 
-        if(isset($_GET['sale']) && $_GET['sale'] > 0) {
+        if (isset($_GET['sale']) && $_GET['sale'] > 0) {
             $totalPoints = 0;
         } else {
             $points = round(($total * 3) / 100, 2);
 
-            $totalPoints = ( round($_SESSION['user']->getPoints(), 2 ) + $points);
+            $totalPoints = (round($_SESSION['user']->getPoints(), 2) + $points);
         }
-        // Update user points, 3% of total.
+// Update user points, 3% of total.
         $query = $this->dsql_connection->dsql();
 
-        $result =$query->table('users')
+        $result = $query->table('users')
             ->where('idu', $_SESSION['user']->getIdu())
             ->set('points', $totalPoints)
             ->update();

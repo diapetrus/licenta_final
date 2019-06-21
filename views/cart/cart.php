@@ -14,9 +14,11 @@ if (isset($_SESSION['user']->cart)) {
         }
     }
 }
-foreach ($_SESSION['user']->cart as $item) {
-    if (isset($item['pizzaof'])) {
-        $totaloff += $item['pizzaof']->getPricep() * $item['quantity'];
+if (isset($_SESSION['user']->cart['offer'])) {
+    foreach ($_SESSION['user']->cart['offer'] as $key => $oferta) {
+        foreach ($oferta as $pizza) {
+            $totaloff += $pizza['pizzaof']->getPricep() * $pizza['quantity'];
+        }
     }
 }
 if ($total < 50 and $totaloff < 50)
@@ -36,23 +38,33 @@ else
             <th>Preț total</th>
             <th>Elimina din coș</th>
         </tr>
-        <?php foreach ($_SESSION['user']->cart['offer'] as $key => $oferta) : ?>
-            <tr>
-                <td>Oferta 1</td>
-            </tr>
-            <?php foreach ($oferta as $pizza) : ?>
+        <?php if (isset($_SESSION['user']->cart['offer'])): ?>
+            <?php foreach ($_SESSION['user']->cart['offer'] as $key => $oferta) : ?>
                 <tr>
-                    <th class="col-sm-2"><img class="img-thumbnail" src="<?= $pizza['pizzaof']->getImagep(); ?>"></th>
+                    <td class="col-sm-2">Oferta 1</td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-2"></td>
+                    <td class="col-sm-2"><?= $totaloff ?></td>
+                    <td class="col-sm-2">
+                        <a href="/remove-offer-from-cart/<?= $key; ?>"
+                           class="btn btn-primary glyphicon glyphicon-trash"> Șterge</a>
+                    </td>
                 </tr>
+                <?php foreach ($oferta as $pizza) : ?>
+                    <tr>
+                        <th class="col-sm-2"><img class="img-thumbnail" src="<?= $pizza['pizzaof']->getImagep(); ?>">
+                        </th>
+                        <th class="col-sm-2">
+                            <?= $pizza['pizzaof']->getTitlep(); ?><br>
+                            <?= $pizza['pizzaof']->getDescribep(); ?>
+                        </th>
+                        <th class="col-sm-2"><?= $pizza['pizzaof']->getPricep(); ?> lei</th>
+                        <th class="col-sm-2"><?= $pizza['quantity']; ?></th>
+                    </tr>
+                <?php endforeach; ?>
             <?php endforeach; ?>
-            <tr>
-                <td colspan="6">
-                    <a href="/remove-offer-from-cart/<?= $key; ?>"
-                       class="btn btn-primary glyphicon glyphicon-trash"> Șterge</a>
-                </td>
-            </tr>
-        <?php endforeach; ?>
-
+        <?php endif; ?>
         <?php foreach ($_SESSION['user']->cart as $item):
             if (isset($item['pizza'])):?>
                 <tr>
@@ -108,7 +120,7 @@ else
     <div>Coșul dumneavoastră este gol</div>
 <?php endif; ?>
 <script>
-    const total = parseFloat('<?php echo $total + $transport; ?>', 2);
+    const total = parseFloat('<?php echo $total + $transport + $totaloff; ?>', 2);
     const points = parseFloat('<?=$_SESSION['user']->getPoints()?>', 2);
     $(document).ready(function () {
         $('.total-price').on('click', function () {
